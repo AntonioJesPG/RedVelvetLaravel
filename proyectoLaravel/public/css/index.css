@@ -1,0 +1,70 @@
+
+body{
+    background-color: #303030;
+}
+
+.navColor{
+    background-color: #c2175b;
+    color:white;
+}
+
+.navText{
+    color:white;
+    text-decoration: none;
+}
+
+.navText:hover{
+    color:black;
+}
+
+.card {
+
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+.btnRV{
+    background-color:#c2175b;
+    color:white;
+    margin-left: 10px;
+}
+
+.cardIndex{
+    background-color:#c2175b;
+    color:white;
+}
+
+.cardIndex img{
+    margin : auto;
+}
+
+.btnIndex{
+    background-color:#303030;
+    color:white;
+    margin-bottom:5px;
+}
+
+.formularioHeader{
+    background-color: #c2175b;
+    color:white;
+}
+
+.tablaCrud{
+    margin-top: 25px;
+    background-color: white;
+    border: solid;
+    border-color: #c2175b;
+}
+
+.tablaCrud th{
+    background-color:#c2175b;
+    color:white;
+}
+
+.crudContainer{
+    margin-top: 25px;
+}
