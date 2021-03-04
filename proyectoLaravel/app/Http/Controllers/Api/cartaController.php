@@ -16,8 +16,8 @@ class cartaController extends Controller
      */
     public function index()
     {
-        $producto = Product::findOrFail(1);
-        return view('api.carta',['producto' => $producto]);
+        $productos = Product::all();
+        return response()->json($productos);
     }
 
     /**
@@ -26,32 +26,25 @@ class cartaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function siguiente($id){
 
-        $productos = Product::all();
-
-        if($id == $productos->count()){
-            $producto = Product::findOrFail($id);
-        }else{
-            $producto = Product::findOrFail($id+1);
-        }
-            return view('api.carta',['producto' => $producto]);
-    }
-
-    public function anterior($id){
-        $producto = Product::findOrFail($id);
-        $primerProducto = Product::findOrFail(1);
-
-        if($producto != $primerProducto){
-            $producto = Product::findOrFail($id-1);
-
-        }
-        return view('api.carta',['producto' => $producto]);
-    }
 
     public function store(Request $request)
     {
-        //
+        Validator::make($request->all(), [
+            'nombre' => ['required','string'],
+            'tipo' => ['required'],
+            'precio' => ['required','number'],
+            'imagen' => ['required'],
+        ]);
+
+        Product::create([
+            'nombre' => $request->nombre,
+            'tipo' => $request->tipo,
+            'precio' => $request->precio,
+            'imagen' => $request->imagen
+        ]);
+
+        return response()->json(['result','OK']);
     }
 
     /**
@@ -62,7 +55,8 @@ class cartaController extends Controller
      */
     public function show($id)
     {
-        //
+        $productos = Product::findOrFail($id);
+        return response()->json($productos);
     }
 
     /**
@@ -74,7 +68,23 @@ class cartaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $producto = Product::findOrFail($id);
+
+        Validator::make($request->all(), [
+            'nombre' => ['required','string'],
+            'tipo' => ['required'],
+            'precio' => ['required','number'],
+            'imagen' => ['required'],
+        ]);
+
+        $producto->nombre = $request->nombre;
+        $producto->tipo = $request->tipo;
+        $producto->precio = $request->precio;
+        $producto->imagen = $request->imagen;
+
+        $producto->save();
+
+        return response()->json(['result','OK']);
     }
 
     /**
@@ -85,6 +95,7 @@ class cartaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::destroy($id);
+        return response()->json(['result','OK']);
     }
 }

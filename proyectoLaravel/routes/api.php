@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('carta',[cartaController::class,'index']);
-Route::get('carta/siguiente/{id}',[cartaController::class,'siguiente']);
-Route::get('carta/anterior/{id}',[cartaController::class,'anterior']);
+Route::get('index',[cartaController::class,'index']);
+Route::get('show/{id}',[cartaController::class,'show']);
+Route::post('store',[cartaController::class,'store']);
+Route::put('update/{id}',[cartaController::class,'update']);
+Route::delete('destroy/{id}',[cartaController::class,'destroy']);
